@@ -1,0 +1,382 @@
+<!DOCTYPE HTML>
+<!--
+	Alpha by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-156016776-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-156016776-1');
+</script>
+
+		<title>Web Development Project</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="shortcut icon" type="image/png" href="images/sql_4_small.png"/>
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			<header id="header">
+				<h1><a href="index.html">Portfolio Website</a> by George Oddoye</h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html" class="button">Home</a></li>
+						<li>
+							<a href="#" class="icon solid fa-angle-down">Menu</a>
+							<ul>
+								<li><a href="aboutme.html">About Me</a></li>
+								<li><a href="resume.html">Resume</a></li>
+								<li><a href="contact.html">Contact</a></li>
+								<li>
+									<a href="#">Projects</a>
+									<ul>
+										<li><a href="indeed_project.html">Indeed Data Professional</a></li>
+										<li><a href="web_project.html">Web Data Visualization</a></li>
+										<li><a href="etl_project.html">Extract Transform Load</a></li>
+										<li><a href="#">Coming Soon..</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<!-- <li><a href="#" class="button">Sign Up</a></li> -->
+					</ul>
+				</nav>
+			</header>
+
+			<!-- Main -->
+				<section id="main" class="container">
+					<header>
+						<h2>SQL CheatSheet</h2>
+						<p>A quick look at commonly utilized postgreSQL statements and queries</p>
+					</header>
+					<div class="box">
+						<span class="image featured"><img src="images/postgresql-logo_small.png" alt="" /></span>
+						<!-- <h3><b>A detailed explanation of this project is coming very soon.</b></h3> -->
+						<hr class="divider">
+						<p>/*TABLE OF CONTENTS*/<br> 
+							SELECT 1-3 <br>
+							DISTINCT 4-5 <br>
+							WHERE 6 <br>
+							OPERATOR (!=, <=, >=, = ect) 6<br>
+							LOGICAL OPERATOR (AND, OR) 6<br>
+							COUNT 7-8<br>
+							LIMIT 9<br>
+							ORDER BY 10<br>
+							BETWEEN 11<br>
+							NOT BETWEEN 12<br>
+							IN 13<br>
+							NOT IN 14<br>
+							LIKE 15<br>
+							NOT LIKE 16<br>
+							ILIKE 17<br>
+							AVG 18<br>
+							ROUND 18<br>
+							MIN 19<br>
+							MAX 20<br>
+							SUM 21<br>
+							GROUP BY 22<br>
+							HAVING 23<br>
+							<br>
+							--------------------------------------------------------------------------------------------------<br>
+							<b>1./*SELECT ALL STATEMTNETS*/</b><br><br>
+							
+							SELECT * FROM table_1;<br><br>
+							
+							SELECT * FROM actor;<br><br>
+							
+							SELECT * FROM customer;<br><br>
+							
+							SELECT * FROM film;<br><br>
+							
+							
+							
+							--------------------------------------------------------------------------------------------------<br>
+							<b>2./*SELECT SINGLE COLUMN STATEMTNETS*/</b><br><br>
+							
+							SELECT column_1 FROM table_1;<br><br>
+							
+							SELECT first_name FROM actor;<br><br>
+							
+							
+							--------------------------------------------------------------------------------------------------<br>
+							<b>3./*SELECT MULTIPLE COLUMN STATEMTNETS*/</b><br><br>
+							
+							SELECT column_1, column_2 FROM table_1;<br><br>
+							
+							SELECT first_name, last_name FROM actor;<br><br>
+							
+							SELECT first_name, last_name, email FROM customer;<br><br>
+							
+							
+							
+							--------------------------------------------------------------------------------------------------<br>
+							<b>4./*SELECT DISTINCT SINGLE COLUMN STATEMTNETS. [RETURNS UNIQUE VALUES]*/</b><br><br>
+							
+							SELECT DISTINCT column_1 FROM table_1;<br><br>
+							
+							SELECT DISTINCT release_year FROM film;<br><br>
+							
+							SELECT DISTINCT rating FROM film; <br><br>
+							
+							
+							
+							--------------------------------------------------------------------------------------------------<br>
+							<b>5./*SELECT DISTINCT MULTIPLE COLUMN STATEMTNETS*/</b><br><br>
+							
+							SELECT DISTINCT column_1, column_2 FROM table_1;<br><br>
+							
+							SELECT DISTINCT release_year, rental_rate FROM film;<br><br>
+							
+							
+							
+							--------------------------------------------------------------------------------------------------<br>
+							<b>6./*SELECT WHERE STATEMTNETS. [RETURNS SPECIFIED VALUES]*/</b><br><br>
+							
+							SELECT * FROM column_1 WHERE column_2;<br><br>
+							
+							SELECT * FROM payment WHERE amount != 4.99;<br><br>
+							
+							SELECT first_name, last_name, email FROM customer WHERE first_name='Nancy' AND last_name='Thomas'<br><br>
+							
+							SELECT customer_id, amount, payment FROM payment WHERE amount <= 1 OR amount >= 8;<br><br>
+							
+							
+							
+							--------------------------------------------------------------------------------------------------<br>
+							<b>7./*SELECT COUNT STATEMTNETS. [SHOWS NUMBER OF ROWS IN TABLE]*/</b><br><br>
+							
+							SELECT COUNT * FROM table_1;<br><br>
+							
+							SELECT COUNT(*) FROM payment;<br><br>
+							
+							
+							
+							--------------------------------------------------------------------------------------------------<br>
+							<b>8./*SELECT COUNT STATEMTNETS. [SHOWS NUMBER OF ROWS IN STATMENT]*/</b><br><br>
+							
+							SELECT COUNT(DISTINCT column_1) FROM table_1;<br><br>
+							
+							SELECT COUNT(DISTINCT amount) FROM payment;	<br><br>
+							
+							
+							
+							--------------------------------------------------------------------------------------------------<br>
+							<b>9./*SELECT LIMIT STATEMTNETS. [RETURNS SPECIFIED NUMBER OF ROWS]*/</b><br><br>
+							
+							SELECT * FROM table_1 LIMIT;<br><br>
+							
+							SELECT * FROM actor LIMIT 5;<br><br>
+							
+							
+							
+							--------------------------------------------------------------------------------------------------<br>
+							<b>10./*SELECT ORDER BY STATEMTNETS. [RETURNS VALUES IN ASCENDING OR DESCENDING ORDER]*/</b><br><br>
+							
+							SELECT column_1, column_2 FROM table_1 ORDER BY column_1 ASC/DESC;<br><br>
+							
+							SELECT first_name, last_name FROM customer ORDER BY first_name ASC;<br><br>
+							
+							
+							SELECT first_name, last_name FROM customer ORDER BY first_name ASC;SELECT first_name, last_name 
+							FROM customer ORDER BY first_name ASC, last_name DESC;<br><br>
+							
+							
+							SELECT customer_id, amount FROM payment ORDER BY amount DESC LIMIT 10;<br><br>
+							
+							
+							
+							--------------------------------------------------------------------------------------------------<br>
+							<b>11./*SELECT BETWEEN STATEMTNETS. [RETURNS VALUES BETWEEN A SPECIFIED RANGE]*/</b><br><br>
+							
+							SELECT column_1, column_2 FROM table_1 WHERE column_1 BETWEEN;<br><br>
+							
+							SELECT customer_id, amount FROM payment WHERE amount BETWEEN 8 AND 10;<br><br>
+							
+							SELECT amount, payment_date FROM payment WHERE payment_date BETWEEN '2007-02-07' AND '2007-02-15';<br><br>
+							
+							
+							
+							--------------------------------------------------------------------------------------------------<br>
+							<b>12./*SELECT NOT BETWEEN STATEMTNETS. [RETURNS VALUES NOT BETWEEN A SPECIFIED RANGE]*/</b><br><br>
+							
+							SELECT column_1, column_2 FROM table_1 WHERE column_2 NOT BETWEEN;<br><br>
+							
+							SELECT customer_id, amount FROM payment WHERE amount NOT BETWEEN 8 AND 9;<br><br>
+							
+							SELECT amount, payment_date FROM payment WHERE payment_date NOT BETWEEN '2007-02-07' AND '2007-02-15';<br><br>
+							
+							
+							
+							--------------------------------------------------------------------------------------------------<br>
+							<b>13./*SELECT IN STATEMTNETS. [RETURNS VALUES IF THEY MATCH THE SPECIFIED LIST]*/</b><br><br>
+							
+							SELECT column_1, column_2, column_3 FROM table_1 WHERE column_1 IN;<br><br>
+							
+							SELECT customer_id, rental_id, return_date FROM rental WHERE customer_id IN (7,13,10);<br><br>
+							
+							
+							
+							--------------------------------------------------------------------------------------------------<br>
+							<b>14./*SELECT NOT IN STATEMTNETS. [RETURNS VALUES IF THEY DO NOT MATCH THE SPECIFIED LIST]*/</b><br><br>
+							
+							SELECT column_1, column_2, column_3 FROM table_1 WHERE column_1 NOT IN;<br><br>
+							
+							SELECT customer_id, rental_id, return_date FROM rental WHERE customer_id NOT IN (1,15,6);<br><br>
+							
+							
+							
+							---------------------------------------------------------------------------------------------------<br>
+							<b>15./*SELECT LIKE((%) everything following or leading, (_) single character)STATEMTNETS. 
+								[RETURNS VALUES THAT ARE LIKE THE SPECIFIED VALUE]*/</b><br><br>
+							
+							SELECT column_1, column_2 FROM table_1 WHERE column_1 LIKE;<br><br>
+								
+							SELECT first_name, last_name FROM customer WHERE first_name LIKE 'Jen%';<br><br>
+							
+							SELECT first_name, last_name FROM customer WHERE first_name LIKE '%ath%';<br><br>
+							
+							SELECT first_name, last_name FROM customer WHERE first_name LIKE '_heryl';<br><br>
+							
+							SELECT first_name, last_name FROM customer WHERE first_name LIKE '_her%';<br><br>
+							
+							
+							---------------------------------------------------------------------------------------------------<br>
+							<b>16./*SELECT NOT LIKE((%) everything following or leading, (_) single character)STATEMTNETS. 
+								[RETURNS VALUES THAT ARE NOT LIKE THE SPECIFIED VALUE]*/</b><br><br>
+							
+							SELECT column_1, column_2 FROM table_1 WHERE column_1 NOT LIKE;	<br><br>
+								
+							SELECT first_name, last_name FROM customer WHERE first_name NOT LIKE 'Jen%';<br><br>
+							
+							
+							
+							---------------------------------------------------------------------------------------------------<br>
+							<b>17./*SELECT ILIKE((%) everything following or leading, (_) single character)STATEMTNETS. 
+								[RETURNS VALUES THAT ARE LIKE THE SPECIFIED VALUE NOT CASE SENSETIVE]*/</b><br><br>
+							
+							SELECT column_1, column_2 FROM table_1 WHERE column_1 ILIKE;<br><br>
+								
+							SELECT first_name, last_name FROM customer WHERE first_name ILIKE 'BAR%';<br><br>
+							
+							SELECT first_name, last_name FROM customer WHERE first_name ILIKE 'BaR%';<br><br>
+							
+							SELECT first_name, last_name FROM customer WHERE first_name ILIKE 'baR%';<br><br>
+							
+							
+							
+							----------------------------------------------------------------------------------------------------<br>
+							<b>18./*SELECT AVG & ROUND STATEMTNETS. [RETURNS AVG OF SPECIFIED STATMENT AND ROUNDS TO GIVEN PLACE]*/</b><br><br>
+							
+							SELECT AVG(column_1)FROM table_1;<br><br>
+							
+							SELECT AVG(amount)FROM payment;<br><br>
+							
+							SELECT ROUND( AVG(amount), 2) FROM payment;<br><br>
+							
+							
+							
+							----------------------------------------------------------------------------------------------------<br>
+							<b>19./*SELECT MAX STATEMTNETS. [RETURNS MAX OF SPECIFIED STATMENT]*/</b><br><br>
+							
+							SELECT MAX(column_1)FROM table_1;<br><br>
+							
+							SELECT MAX(amount)FROM payment;<br><br>
+							
+							
+							
+							----------------------------------------------------------------------------------------------------<br>
+							<b>20./*SELECT MIN STATEMTNETS. [RETURNS MIN OF SPECIFIED STATMENT]*/</b><br><br>
+							
+							SELECT MIN(column_1)FROM table_1;<br><br>
+							
+							SELECT MIN(amount)FROM payment;<br><br>
+							
+							
+							
+							----------------------------------------------------------------------------------------------------<br>
+							<b>21./*SELECT SUM STATEMTNETS. [RETURNS SUM OF SPECIFIED STATMENT]*/</b><br><br>
+							
+							SELECT SUM(column_1)FROM table_1;<br><br>
+							
+							SELECT SUM(amount)FROM payment;<br><br>
+							
+							
+							
+							----------------------------------------------------------------------------------------------------<br>
+							<b>22./*SELECT GROUP BY STATEMTNETS. [GROUPS VALUES OF SPECIFIED STATMENT]*/</b><br><br>
+							
+							SELECT column_1 FROM table_1 GROUP BY column_1;<br><br>
+							
+							SELECT column_1, AGGREGATE(column_2) FROM table_1 GROUP BY column_1;<br><br>
+							
+							SELECT customer_id FROM payment GROUP BY customer_id;<br><br>
+							
+							SELECT customer_id, SUM (amount) FROM payment GROUP BY customer_id;<br><br>
+							
+							SELECT customer_id, SUM (amount) FROM payment GROUP BY customer_id ORDER BY SUM(amount) DESC;<br><br>
+							
+							
+							
+							
+							----------------------------------------------------------------------------------------------------<br>
+							<b>22./*GROUP BY HAVING STATEMTNETS. [SETS A CONDITION FOR A GROUP BY STATMENT]*/</b><br><br>
+							
+							SELECT column_1 FROM table_1 GROUP BY column_1 HAVING column_1 (conditional statment);<br><br>
+							
+							SELECT customer_id, SUM(amount) FROM payment GROUP BY customer_id HAVING SUM(amount) > 200;
+						<!-- </p>
+						<h3>Inspiration</h3>
+						<hr class="divider">
+						<p>There has been a steady increase in gun violence over the past decade and this trend shows no signs of slowing down. In fact, it is not uncommon to turn on the news and hear about a new mass shooting event that has occured somewhere in the nation. This year alone there have been mass shooting events in Virginia Beach, Virginia (13 Killed/4 Injured), El Paso, Texas (22 Killed/24 Injured), and Dayton, Ohio (10 Killed/27 Injured). In total there were 409 mass shooting events in 2019 resulting in 486 killed and 1642 injured. Gun control is a very sensitive and widely debated topic in The United States of America which has caused it to become highly politicised.
+							<br><br>
+							The two major political parties in the United States (Democrats/Republicans) have drastically different views and opinions on the subject. Until such a time comes where both sides can come to agreement on gun control it appears that the current positive trend in gun violence will continue to occur. This is what provided the inspiration for the creation of this website. As Data Analysts we can help analyze this dire situation by studying gun violence data and help provide well informed predictions about future trends in order to build strategies that will eventually minimize gun violence, and promote gun safety.
+						</p>  -->
+						<!-- <div class="row">
+							<div class="row-6 row-12-mobilep">
+								<h3>And now a subheading</h3>
+								<p>Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae lorem ipsum adipiscing ac. Vivamus ornare laoreet odio vis praesent.</p>
+							</div>
+							<div class="row-6 row-12-mobilep">
+								<h3>And another subheading</h3>
+								<p>Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae lorem ipsum adipiscing ac. Vivamus ornare laoreet odio vis praesent.</p> -->
+							</div>
+						</div> -->
+					</div>
+				</section>
+
+			<!-- Footer -->
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="https://github.com/Goddoye" class="icon brands fa-github" rel="noopener noreferrer" target="_blank"><span class="label">Github</span></a></li>
+					<li><a href="https://www.linkedin.com/in/georgeoddoye/" class="icon brands fa-linkedin" rel="noopener noreferrer" target="_blank"><span class="label">LinkedIn</span></a></li>
+					<!-- <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li> -->
+					<li><a href="mailto:oddoye.george@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; 2020 George Oddoye.</li><li>All rights reserved</a></li>
+				</ul>
+			</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

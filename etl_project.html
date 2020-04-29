@@ -1,0 +1,181 @@
+<!DOCTYPE HTML>
+<!--
+	Alpha by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-156016776-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-156016776-1');
+</script>
+
+		<title>ETL</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="shortcut icon" type="image/png" href="images/sql_4_small.png"/>
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			<header id="header">
+				<h1><a href="index.html">Portfolio Website</a> by George Oddoye</h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html" class="button">Home</a></li>
+						<li>
+							<a href="#" class="icon solid fa-angle-down">Menu</a>
+							<ul>
+								<li><a href="aboutme.html">About Me</a></li>
+								<li><a href="resume.html">Resume</a></li>
+								<li><a href="contact.html">Contact</a></li>
+								<li>
+									<a href="#">Projects</a>
+									<ul>
+										<li><a href="indeed_project.html">Indeed Data Professional</a></li>
+										<li><a href="web_project.html">Web Data Visualization</a></li>
+										<li><a href="etl_project.html">Extract Transform Load</a></li>
+										<li><a href="#">Coming Soon..</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<!-- <li><a href="#" class="button">Sign Up</a></li> -->
+					</ul>
+				</nav>
+			</header>
+
+			<!-- Main -->
+				<section id="main" class="container">
+					<header>
+						<h2>ETL YouTube Statistics</h2>
+						<p>This project takes a closer look at the Extract | Transform | Load process in regards to trending YouTube Video Statistics in 2018</p>
+					</header>
+					<div class="box">
+						<span class="image featured"><img src="images/youtube_4_1.jpg" alt="" /></span>
+						<!-- <h3 style="text-align:center"><b>WORK IN PROGRESS</b></h3> -->
+						
+						<h3>Inspiration</h3>
+						<hr class="divider">
+						<p>The true power of data analysis is the discovery of meaningful trends, informing conclusions, creating data visualization, and supporting decision making. Business from all industries and sectors can benefit from the information data provides. However, before any of the aforementioned processes can happen ETL (Extract, Transform, Load) must take place. ETL is the vital first step in any data driven project. In fact it is said that data professionals spend eighty percent of their time on data preparation (ETL) and twenty percent on actual data analysis. 
+							<br><br>
+							This project aimed to address the procedures necessary during ETL. <br><br>
+						<div class="row">
+							<div class="row-6 row-12-mobilep">
+						<h3>Data</h3>
+						<hr class="divider">
+						<p>A <a a href="https://www.kaggle.com/datasnaek/youtube-new"  rel="noopener noreferrer" target="_blank">YouTube video statistics</a> dataset was found on kaggle and utilized for the purposes of this project. The dataset included daily statistics for trending videos on YouTube split into separate regions. The United States (US), Great Britain (GB), Canada (CA), and Germany (DE) were selected from the list of regions. The data was collected using YouTube's API and stored into CSV and JSON files.</p>
+						<br>
+						</div>
+						<div class="row-6 row-12-mobilep">
+						<h3>Extract</h3>
+						<hr class="divider">
+						<p><b>Extract:</b> is the process of reading data from a database. In this stage, the data is collected, often from multiple and different types of sources.<br>
+						<br>
+							After the data was obtained from Kaggle it was extracted using pandas which is a software library written for the Python programming language for data manipulation and analysis. Pandas, which is derived from "panel data",  is capable of accomplishing several task but in regards to extraction it's ability for reading/importing and writing/exporting data between in-memory data structures and different file formats such as csv, excel, json, ect was utilized. 
+							<br><br>
+							<img src="images/readcsv.jpg">
+							<br><br>
+							Above the file path to the data was created and then read using pandas pd.read_csv() function and pd.read_json() function to store csv and json files into dataframes. Now that the data had been extracted and placed into dataframes the information could be altered, cleaned, and transformed easily.
+						</p>
+						<br>
+					</div> 
+						
+						<div class="row-6 row-12-mobilep">
+						<h3>Transform</h3>
+						<hr class="divider">
+						<p><b>Transform:</b> is the process of converting the extracted data from its previous form into the form it needs to be in so that it can be placed into another database. Transformation occurs by using rules or lookup tables or by combining the data with other data.<br>
+						<br>
+						When looking at the csv and json dataframes a few problems were found. Firstly the json dataframe was semi structured which means it had an apparent pattern but it did not obey the rules of relational databases such as PostgreSQL which is were the data was eventually going to be loaded. The csv dataframe was far more structured however the "publish_time" column contained a timestamp that would not have been easily accepted by PostgreSQL.
+						<br><br>
+						<img src="images/semistructured.jpg">
+						<br><br>
+						In order to address these issue the data had to be cleaned. The csv file contained pertinent information ('views', 'likes', 'dislikes', 'category_id', ect) relating to each of the trending videos. The major feature missing from the csv file was the video type. Fortunately the json file contained this information ('Film & Animation', 'Music', 'Sports', ect) as well as the id associated with each type. This meant that the csv and json file information could be merged to create a far more in-depth dataframe.   
+						<br><br>
+						To pull the required information from the json file a for loop was written to grab the title and id from the semi structured "items" column.		
+						<img src="images/forloop.jpg">
+						<br><br>
+						The title and id were stored into a dictionary that was nested within a list. Now that the data was in a structured format a cleaned dataframe could be created. 
+						<img src="images/cleanedjson.jpg">
+						<br><br>
+						With the json dataframe information structured and the columns renamed the focus of the cleaning now shifted to the csv file. As mention above the csv files "publish_time" had a timestamp that is foreign to PostgreSQL. There are ways to convert from one time stamp to another, however, that process can be extremely frustrating and lead to more unexpected errors. For this reason a different approach was utilized. The "publish_time" column was a string type which allowed for string indexing to be used to pull out the actual publish time ("17:08:49") from the current format ("2017-11-13T17:08:49.000Z")
+						<br><br>
+						<img src="images/publish.jpg">
+						<br><br>
+						Once again a for loop was used to pull the information out of the timestamp because the 12th through 19th character was always the time for each item in the list so a slice was created using the index of the string in the form of "t[11:19]" (*Python starts counting its index at 0 instead of 1 which is why the slice begins at 11 and now 12). The publish time was now stored into a new column within the original csv dataframes.
+						<br><br>
+						<img src="images/cleanhour.jpg">
+						<br><br>
+						At this point both the json and csv dataframe had been cleaned and the transformation process could begin. The intention was to transform the data by merging the json and csv dataframes to provide the whole story for each of the trending videos. Both the json and csv dataframes had a "category_id" column which is what allowed a pd.merge() function to be utilized (*pd.merge() is very similar to a JOIN statement in SQL).
+						<br><br>
+						<img src="images/mergeddf.jpg">
+						<br><br>
+						With the csv and json data merged the final step of the transformation could take place. The final task was to select the relevant columns and store them into the final dataframe that would be loaded in to PostgreSQL.
+						<br><br>
+						<img src="images/selectedcolumns.jpg">
+						<img src="images/cleaneddf.jpg">
+						</p>	
+						<br>
+					</div> 
+					<div class="row-6 row-12-mobilep">
+						<h3>Load</h3>
+						<hr class="divider">
+						<p><b>Load:</b> is the process of writing the data into the target database.<br>
+							<br>
+							The first step of the loading process was to create a database (youtube_db) using pgAdmin which is a management tool for PostgreSQL.<br>
+							<img src="images/youtube_db.jpg">
+							<br><br>
+							With the database made the tables could now be created. It was very important that the columns in the tables matched those in the final dataframes made at the end of the transformation process. 
+							<img src="images/SQLschema.jpg">
+							<br><br>
+							Now that the database and tables (us, great britain, germany, canada) had been created a connection to them could be established in python via SQLAlchemy which is an open-source SQL toolkit and object-relational mapper. SQLAlchemy requires the username and password along with the name of the database and type of SQL being utilized.
+							<br><br>
+							<img src="images/sqlconn.jpg">
+							<br><br>
+							With the connection established the data could finally be populated into the tables to complete the loading process.
+							
+							<img src="images/populatesql.jpg">
+							<br><br>
+							To ensure the data had been stored properly a conformational query was written.
+							<img src="images/sqlquery.jpg">
+							</p>
+						
+					</div> 
+						</div> 
+					</div>
+				</section>
+
+			<!-- Footer -->
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="https://github.com/Goddoye" class="icon brands fa-github" rel="noopener noreferrer" target="_blank"><span class="label">Github</span></a></li>
+					<li><a href="https://www.linkedin.com/in/georgeoddoye/" class="icon brands fa-linkedin" rel="noopener noreferrer" target="_blank"><span class="label">LinkedIn</span></a></li>
+					<!-- <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li> -->
+					<li><a href="mailto:oddoye.george@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; 2020 George Oddoye.</li><li>All rights reserved</a></li>
+				</ul>
+			</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
